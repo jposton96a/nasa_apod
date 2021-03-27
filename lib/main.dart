@@ -24,8 +24,11 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      // home: MyHomePage(title: 'Flutter Demo Home Page'),
-      home: APODFeedPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MyHomePage(title: "Nasa APOD Demo App"),
+        '/feed': (context) => APODFeedPage(),
+      },
     );
   }
 }
