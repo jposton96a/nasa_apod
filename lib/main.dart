@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pages/details.dart';
 import 'pages/home.dart';
 import 'pages/feed.dart';
 
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => MyHomePage(title: "Nasa APOD Demo App"),
         '/feed': (context) => APODFeedPage(),
+        APODDetailsPage.routeName: (context) => APODDetailsPage(),
       },
     );
   }

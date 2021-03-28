@@ -1,5 +1,8 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
+import '../pages/details.dart';
 import '../services/nasa/apod.dart';
 
 class APODCard extends StatelessWidget {
@@ -7,18 +10,14 @@ class APODCard extends StatelessWidget {
 
   APODCard(this.apodData);
 
-  readMoreAction() {
-    print("The user wants to know more!");
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        child: Card(elevation: 1, child: cardContents()));
+        child: Card(elevation: 1, child: cardContents(context)));
   }
 
-  Widget cardContents() {
+  Widget cardContents(BuildContext context) {
     return Column(
       children: <Widget>[
         ListTile(
@@ -28,7 +27,12 @@ class APODCard extends StatelessWidget {
         ButtonBar(
           alignment: MainAxisAlignment.end,
           children: [
-            TextButton(onPressed: readMoreAction, child: Text("Read More"))
+            TextButton(
+                onPressed: () => {
+                      Navigator.pushNamed(context, APODDetailsPage.routeName,
+                          arguments: this.apodData)
+                    },
+                child: Text("Read More"))
           ],
         ),
       ],
