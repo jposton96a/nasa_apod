@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'pages/home.dart';
 import 'pages/feed.dart';
 
-void main() {
+import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
+
+Future main() async {
+  // Load configuration from environment variables
+  await DotEnv.load(fileName: ".env");
   runApp(MyApp());
 }
 
