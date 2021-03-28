@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../services/nasa/apod.dart';
-import '../services/nasa/apod.dart';
-import '../services/nasa/apod.dart';
-import '../services/nasa/query.dart';
-import '../widgets/image_card.dart';
+import '../services/nasa/service.dart';
 import '../widgets/image_card.dart';
 
 class APODFeedPage extends StatefulWidget {
