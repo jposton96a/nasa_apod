@@ -33,19 +33,18 @@ class APODDetailsPage extends StatelessWidget {
               // Margin works as a placeholder for this feature
               margin: EdgeInsets.only(top: 500),
               padding: EdgeInsets.symmetric(horizontal: 10),
-              child: APODDetailsCard(details: details),
+              child: APODDetailsOverlay(details: details),
             ),
           ),
         ));
   }
 }
 
-class APODDetailsCard extends StatelessWidget {
+class APODDetailsOverlay extends StatelessWidget {
   static const double TitleFontSize = 30;
   static const double ExplanationFontSize = 15;
-  static const TitleFont = 10;
 
-  const APODDetailsCard({
+  const APODDetailsOverlay({
     Key key,
     @required this.details,
   }) : super(key: key);

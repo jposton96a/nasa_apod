@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../services/nasa/apod.dart';
@@ -5,6 +7,8 @@ import '../services/nasa/service.dart';
 import '../widgets/image_card.dart';
 
 class APODFeedPage extends StatefulWidget {
+  static const routeName = '/feed';
+
   APODFeedPage({Key key}) : super(key: key);
 
   final title = "Astronomy Picture of the Day";
@@ -30,7 +34,6 @@ class _APODFeedPageState extends State<APODFeedPage> {
         ),
         body: Center(
             child: Container(
-                padding: EdgeInsets.only(top: 100),
                 constraints: BoxConstraints(minWidth: 350, maxWidth: 650),
                 child: FutureBuilder<APODResult>(
                   future: this.futureAPOD,
