@@ -34,7 +34,7 @@ class _APODFeedPageState extends State<APODFeedPage> {
         body: Center(
             child: Container(
                 padding: EdgeInsets.only(top: 100),
-                constraints: BoxConstraints(minWidth: 350, maxWidth: 450),
+                constraints: BoxConstraints(minWidth: 350, maxWidth: 650),
                 child: FutureBuilder<APODResult>(
                   future: this.futureAPOD,
                   builder: (context, snapshot) {

@@ -7,15 +7,31 @@ class APODCard extends StatelessWidget {
 
   APODCard(this.apodData);
 
+  readMoreAction() {
+    print("The user wants to know more!");
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Card(
-        child: Column(
+    return Container(
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        child: Card(elevation: 1, child: cardContents()));
+  }
+
+  Widget cardContents() {
+    return Column(
       children: <Widget>[
+        ListTile(
+            title: Text(this.apodData.title),
+            subtitle: Text(this.apodData.date)),
         Image.network(this.apodData.url),
-        Text(this.apodData.title),
-        Text(this.apodData.explanation),
+        ButtonBar(
+          alignment: MainAxisAlignment.end,
+          children: [
+            TextButton(onPressed: readMoreAction, child: Text("Read More"))
+          ],
+        ),
       ],
-    ));
+    );
   }
 }
