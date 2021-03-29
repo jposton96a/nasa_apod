@@ -1,10 +1,11 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../services/nasa/apod.dart';
 import '../services/nasa/service.dart';
 import '../widgets/image_card.dart';
+
+const ENV_API_KEY = "NASA_API_KEY";
 
 class APODFeedPage extends StatefulWidget {
   static const routeName = '/feed';
@@ -18,12 +19,14 @@ class APODFeedPage extends StatefulWidget {
 }
 
 class _APODFeedPageState extends State<APODFeedPage> {
-  Future<APODResult> futureAPOD;
+  Future<List<APODResult>> futureAPODList;
 
   @override
   void initState() {
     super.initState();
-    futureAPOD = fetchAPOD();
+    APODService svc = APODService(apiKey: env[ENV_API_KEY]);
+    futureAPODList = svc.fetchAPODRange(
+        DateTime.now().subtract(Duration(days: 10)), DateTime.now());
   }
 
   @override
@@ -35,14 +38,14 @@ class _APODFeedPageState extends State<APODFeedPage> {
         body: Center(
             child: Container(
                 constraints: BoxConstraints(minWidth: 350, maxWidth: 650),
-                child: FutureBuilder<APODResult>(
-                  future: this.futureAPOD,
+                child: FutureBuilder<List<APODResult>>(
+                  future: this.futureAPODList,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return ListView.builder(
-                        itemCount: 100,
+                        itemCount: snapshot.data.length,
                         itemBuilder: (context, index) {
-                          return APODCard(snapshot.data);
+                          return APODCard(snapshot.data[index]);
                         },
                       );
                     } else if (snapshot.hasError) {

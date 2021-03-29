@@ -1,3 +1,5 @@
+import 'package:meta/meta.dart';
+
 /* Example response from NASA APOD API:
 {
     "copyright": "Bernard Miller",
@@ -10,6 +12,8 @@
     "url": "https://apod.nasa.gov/apod/image/2103/C60-61_PS2_CROP_FULL1024.jpg"
 }
 */
+
+const String ISO_8601_SHORT = "YYYY-MM-DD";
 
 class APODResult {
   String title;
@@ -35,11 +39,37 @@ class APODResult {
 class APODQuery {
   final String apiKey;
 
-  APODQuery(this.apiKey);
+  DateTime date;
+  DateTime startDate;
+  DateTime endDate;
+
+  int count;
+  bool thumbs;
+
+  APODQuery(this.apiKey,
+      {this.date, this.startDate, this.endDate, this.count, this.thumbs});
 
   toQueryParams() {
     var queryMap = Map<String, dynamic>();
     queryMap["api_key"] = apiKey;
+    queryMap["date"] = _toISO8601Short(date);
+    queryMap["start_date"] = _toISO8601Short(startDate);
+    queryMap["end_date"] = _toISO8601Short(endDate);
+    queryMap["count"] = count == null ? null : count.toString();
+    queryMap["thumbs"] = thumbs.toString();
+
+    // Remove null values to ensure they don't make it into the query
+    queryMap.removeWhere((key, value) {
+      return key == null || value == null;
+    });
     return queryMap;
   }
+}
+
+_toISO8601Short(DateTime date) {
+  if (date == null) {
+    return null;
+  }
+
+  return date.toIso8601String().substring(0, ISO_8601_SHORT.length);
 }

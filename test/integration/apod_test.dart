@@ -1,9 +1,17 @@
+import 'package:nasa_apod/services/nasa/service.dart';
 import 'package:test/test.dart';
-import '../../lib/services/nasa/query.dart';
 
-void main() {
-  test('Integration Test: Query APOD Demo API and parse json', () async {
-    var apodResponse = await fetchAPOD();
+APODService svc;
+
+Future main() async {
+  setUp(() async {
+    // Initialize APOD service for test usage
+    // defaults to demo api key. May be rate limited
+    svc = APODService();
+  });
+
+  test('Integration Test: Query and parse single APOD details', () async {
+    var apodResponse = await svc.fetchAPOD();
     print("Got APOD /w Title: '${apodResponse.title}'");
 
     // Validate all required fields were populated
@@ -17,5 +25,14 @@ void main() {
     expect(apodResponse.mediaType, isPopulated);
     expect(apodResponse.url, isPopulated);
     expect(apodResponse.hdurl, isPopulated);
+  });
+
+  test('Integration Test: Query APOD results over date range', () async {
+    var queryEndDate = DateTime.now();
+    var queryStartDate = DateTime.now().subtract(Duration(days: 7));
+
+    var apodResponse = await svc.fetchAPODRange(queryStartDate, queryEndDate);
+    print("Retrieved ${apodResponse.length} results");
+    expect(apodResponse.length, isNonZero);
   });
 }
