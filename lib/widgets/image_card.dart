@@ -2,8 +2,8 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 
-import '../pages/details.dart';
-import '../services/nasa/apod.dart';
+import 'package:nasa_apod/pages/details.dart';
+import 'package:nasa_apod/services/nasa/apod.dart';
 
 class APODCard extends StatelessWidget {
   final APODResult apodData;

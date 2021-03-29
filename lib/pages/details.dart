@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../services/nasa/apod.dart';
+import 'package:nasa_apod/services/nasa/apod.dart';
 
 class APODDetailsPage extends StatelessWidget {
   static const routeName = '/details';

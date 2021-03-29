@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 /* Example response from NASA APOD API:
 {
     "copyright": "Bernard Miller",

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import '../services/nasa/apod.dart';
-import '../services/nasa/service.dart';
-import '../widgets/image_card.dart';
+import 'package:nasa_apod/services/nasa/apod.dart';
+import 'package:nasa_apod/services/nasa/service.dart';
+import 'package:nasa_apod/widgets/image_card.dart';
 
 const ENV_API_KEY = "NASA_API_KEY";
 
