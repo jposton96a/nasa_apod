@@ -10,6 +10,7 @@ class APODDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final APODResult details = ModalRoute.of(context).settings.arguments;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -31,8 +32,9 @@ class APODDetailsPage extends StatelessWidget {
             child: Container(
               // TODO: update positioning to snap title to bottom of screen
               // Margin works as a placeholder for this feature
-              margin: EdgeInsets.only(top: 500),
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              margin: EdgeInsets.fromLTRB(0, screenHeight, 0, 30),
+              height: screenHeight * 0.85, // Kinda works but unreliable
+              padding: EdgeInsets.symmetric(horizontal: 15),
               child: APODDetailsOverlay(details: details),
             ),
           ),
@@ -54,24 +56,38 @@ class APODDetailsOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 0,
+      elevation: 1,
       color: Colors.white.withOpacity(0.8),
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
         child: Column(
           children: <Widget>[
             Text(details.title, style: TextStyle(fontSize: TitleFontSize)),
-            ButtonBar(
-              alignment: MainAxisAlignment.start,
-              children: [
-                IconButton(
-                    icon: Icon(Icons.cloud_download_outlined),
-                    onPressed: () => {}),
-                IconButton(icon: Icon(Icons.fullscreen), onPressed: () => {})
-              ],
+            ListTile(
+              title: Text(
+                  details.copyright != null
+                      ? details.copyright
+                      : "copyright unknown",
+                  style: TextStyle(fontStyle: FontStyle.italic)),
+              subtitle: Text(
+                  details.date != null ? details.date : "date unknown",
+                  style: TextStyle(fontStyle: FontStyle.italic)),
+              trailing: ButtonBar(
+                alignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                      icon: Icon(Icons.cloud_download_outlined),
+                      onPressed: () => {}),
+                  IconButton(icon: Icon(Icons.fullscreen), onPressed: () => {})
+                ],
+              ),
             ),
-            Text(details.explanation,
-                style: TextStyle(fontSize: ExplanationFontSize)),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: Text(details.explanation,
+                  style: TextStyle(fontSize: ExplanationFontSize)),
+            )
           ],
         ),
       ),
