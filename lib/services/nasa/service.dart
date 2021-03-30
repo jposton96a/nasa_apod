@@ -29,6 +29,10 @@ class APODService {
     }
   }
 
+  /// fetchAPODRange fetches a list of APODResults over a given range of dates.
+  /// The range will generally return a single entry for each day between [start]
+  /// and [end] (inclusive to both). [requestThumbs] specifies whether to return
+  /// the thumbnail url for video entries.
   Future<List<APODResult>> fetchAPODRange(DateTime start, DateTime end,
       {bool requestThumbs = true}) async {
     // Generate query to API service
