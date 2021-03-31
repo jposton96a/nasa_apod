@@ -12,6 +12,6 @@ WORKDIR /workspace
 COPY . .
 RUN flutter build web
 
-FROM nginx:latest
-COPY ./nginx.conf /etc/nginx/sites-enabled/default.conf
+FROM nginx:1.10-alpine
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /workspace/build/web/ /usr/share/nginx/html/s
