@@ -1,0 +1,13 @@
+version: '3.1'
+services:
+  api:
+    container_name: nasa-apod-web-test
+    restart: always
+    image: nasa-apod
+    ports:
+      - "8080:80"
+    build:
+      context: ./
+    volumes:
+      - "./build/web:/usr/share/nginx/html"
+      - "./nginx.conf:/etc/nginx/sites-enabled/default.conf"
