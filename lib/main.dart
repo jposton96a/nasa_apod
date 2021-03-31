@@ -16,7 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'NASA APOD Demo App',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        textTheme: ThemeData.dark().textTheme,
+      ),
       initialRoute: APODFeedPage.routeName,
       routes: {
         APODFeedPage.routeName: (context) => APODFeedPage(),

@@ -96,9 +96,13 @@ class _APODFeedPageState extends State<APODFeedPage> {
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.black,
+          elevation: 0,
         ),
         body: Center(
             child: Container(
+                color: Colors.black,
                 constraints: BoxConstraints(minWidth: 350, maxWidth: 650),
                 child: ListView.builder(
                   itemCount: _apodList.length + 1,
