@@ -23,6 +23,16 @@ class APODResult {
   String copyright;
   String serviceVersion;
 
+  APODResult(
+      {this.title,
+      this.explanation,
+      this.date,
+      this.mediaType,
+      this.url,
+      this.hdurl,
+      this.copyright,
+      this.serviceVersion});
+
   APODResult.fromJson(Map<String, dynamic> json)
       : title = json['title'],
         explanation = json['explanation'],
