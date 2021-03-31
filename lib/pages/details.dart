@@ -11,6 +11,7 @@ class APODDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final APODResult details = ModalRoute.of(context).settings.arguments;
     double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -28,15 +29,20 @@ class APODDetailsPage extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: SingleChildScrollView(
-            child: Container(
-              // TODO: update positioning to snap title to bottom of screen
-              // Margin works as a placeholder for this feature
-              margin: EdgeInsets.fromLTRB(0, screenHeight, 0, 30),
-              height: screenHeight * 0.85, // Kinda works but unreliable
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: APODDetailsOverlay(details: details),
-            ),
+          child: PageView(
+            scrollDirection: Axis.vertical,
+            children: [
+              Container(
+                  width: screenWidth,
+                  height: screenHeight,
+                  alignment: Alignment.bottomCenter,
+                  padding: EdgeInsets.only(bottom: 40),
+                  child: Icon(Icons.keyboard_arrow_up,
+                      size: 40, color: Colors.white)),
+              Container(
+                  padding: EdgeInsets.fromLTRB(0, 50, 0, 10),
+                  child: APODDetailsOverlay(details: details)),
+            ],
           ),
         ));
   }

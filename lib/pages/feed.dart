@@ -118,7 +118,7 @@ class _APODFeedPageState extends State<APODFeedPage> {
               child: this._loading
                   ? CircularProgressIndicator()
                   : IconButton(
-                      icon: const Icon(Icons.volume_up),
+                      icon: const Icon(Icons.error_outline),
                       onPressed: () {
                         setState(() {
                           _loadPage();
