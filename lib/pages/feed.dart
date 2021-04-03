@@ -94,20 +94,24 @@ class _APODFeedPageState extends State<APODFeedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-          foregroundColor: Colors.white,
-          backgroundColor: Colors.black,
-          elevation: 0,
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: Text(widget.title),
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.black,
+        elevation: 0,
+      ),
+      body: Center(
+        child: Container(
+          color: Colors.black,
+          constraints: BoxConstraints(minWidth: 350, maxWidth: 650),
+          child: ListView.builder(
+            itemCount: _apodList.length + 1,
+            itemBuilder: buildListItem,
+          ),
         ),
-        body: Center(
-            child: Container(
-                color: Colors.black,
-                constraints: BoxConstraints(minWidth: 350, maxWidth: 650),
-                child: ListView.builder(
-                  itemCount: _apodList.length + 1,
-                  itemBuilder: buildListItem,
-                ))));
+      ),
+    );
   }
 
   Widget buildListItem(context, index) {
