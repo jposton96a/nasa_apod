@@ -9,9 +9,18 @@ RUN flutter upgrade
 RUN flutter doctor
 
 WORKDIR /workspace
-COPY . .
+
+# Dependencies
+COPY pubspec.* ./
+RUN flutter pub get
+
+# Web source
+COPY lib ./lib
+COPY assets ./assets
+COPY web ./web
 RUN flutter build web
 
+# Serve in nginx
 FROM nginx:1.10-alpine
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /workspace/build/web/ /usr/share/nginx/html/s
+COPY --from=builder /workspace/build/web/ /usr/share/nginx/html
