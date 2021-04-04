@@ -46,7 +46,7 @@ samples, guidance on mobile development, and a full API reference.
 
 **Photo Feed**
 
-![](screenshots\feed.jpg)
+![Photo Feed](screenshots\feed.jpg?raw=true)
 
 **A Closer Look**
 
