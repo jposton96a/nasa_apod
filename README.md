@@ -6,6 +6,11 @@ Since this is my first app in Flutter 2.0, I'm sure there's plenty I got wrong. 
 
 The app's functions are simple. The user can scroll through a paginated feed of images about space travel collected from the NASA Astronomical Picture of the Day API. Background text description and a closer look at the image is available on the details page!
 
+This Repo Features:
+- Infinite scrolling through past photos
+- Automated builds on [Github Actions](.github/workflows/main.yml)
+- Automated Publishing to the `gh-pages` branch
+    - Note: Should typically be accessible from jposton96a.github.io/nasa_apod, but my CNAME DNS entry seems to be interfere with this
 
 ## Getting Started
 
@@ -13,8 +18,13 @@ The app's functions are simple. The user can scroll through a paginated feed of 
 See the [dockerfile](dockerfile) and [compose file](docker-compose.yml) for info on how to build & run the app
 
 ```bash
-$ git checkout ... && cd nasa_apod
+$ git checkout git@github.com:jposton96a/nasa_apod.git
+$ cd nasa_apod
+# Set the API_KEY build arg in the docker-compose.yml
+$ vim docker-compose.yml
+# Build and start the web app
 $ docker-compose up
+
 # open webpage to localhost:8080
 # NOTE: You must disable CORS in your browser to run this app
 ```
