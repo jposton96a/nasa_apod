@@ -46,13 +46,13 @@ samples, guidance on mobile development, and a full API reference.
 
 **Photo Feed**
 
-![](screenshots\feed.jpg)
+![](screenshots/feed.jpg)
 
 **A Closer Look**
 
-![](screenshots\details.jpg)
+![](screenshots/details.jpg)
 
 
 **Background and Photo Details**
 
-![](screenshots\details_text.jpg)
+![](screenshots/details_text.jpg)
