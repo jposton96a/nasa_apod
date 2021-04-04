@@ -63,7 +63,7 @@ class APODDetailsOverlay extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 1,
-      color: Colors.white.withOpacity(0.8),
+      color: Colors.black.withOpacity(0.8),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
         child: Column(

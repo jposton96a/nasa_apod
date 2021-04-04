@@ -9,18 +9,15 @@ import 'package:nasa_apod/widgets/image_card.dart';
 // TODO: Move to flutter configuration
 const DEBUG_FEED_TEXT = false;
 
-// API Key required to access api.nasa.gov
-// Can be provided through environment variables by setting this key
-const ENV_API_KEY = "NASA_API_KEY";
-
 class APODFeedPage extends StatefulWidget {
   static const routeName = '/feed';
   final title = "Astronomy Picture of the Day";
+  final APODService service;
 
-  APODFeedPage({Key key}) : super(key: key);
+  APODFeedPage({Key key, this.service}) : super(key: key);
 
   @override
-  _APODFeedPageState createState() => _APODFeedPageState();
+  _APODFeedPageState createState() => _APODFeedPageState(this.service);
 }
 
 class _APODFeedPageState extends State<APODFeedPage> {
@@ -35,16 +32,16 @@ class _APODFeedPageState extends State<APODFeedPage> {
   DateTime rangeEnd;
 
   List<APODResult> _apodList;
-  APODService _svc;
-
   bool _loading;
   Exception _exception;
+
+  final APODService service;
+  _APODFeedPageState(this.service);
 
   @override
   void initState() {
     super.initState();
     _apodList = [];
-    _svc = APODService(apiKey: env[ENV_API_KEY]);
     _loadPage();
   }
 
@@ -72,7 +69,7 @@ class _APODFeedPageState extends State<APODFeedPage> {
         "[${start.toString()}, ${end.toString()}]");
 
     // Update state when fetch completes/fails
-    _svc.fetchAPODRange(start, end).then((results) {
+    service.fetchAPODRange(start, end).then((results) {
       print("Got ${results.length} results within range " +
           "[${start.toString()}, ${end.toString()}]");
       setState(() {

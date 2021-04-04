@@ -8,6 +8,5 @@ services:
       - "8080:80"
     build:
       context: ./
-    volumes:
-      - "./build/web:/usr/share/nginx/html"
-      - "./nginx.conf:/etc/nginx/conf.d/default.conf"
+      args: 
+        API_KEY: "<NASA_APOD_API_KEY>"

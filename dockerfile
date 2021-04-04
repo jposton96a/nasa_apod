@@ -18,7 +18,10 @@ RUN flutter pub get
 COPY lib ./lib
 COPY assets ./assets
 COPY web ./web
-RUN flutter build web
+# Define API key used to access NASA Astronomy Pic of the day
+# Get one at: https://api.nasa.gov/
+ARG API_KEY
+RUN flutter build web --dart-define=NASA_API_KEY="${API_KEY}"
 
 # Serve in nginx
 FROM nginx:1.10-alpine
